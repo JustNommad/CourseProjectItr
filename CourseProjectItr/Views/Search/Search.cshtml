@@ -1,0 +1,29 @@
+﻿@model IEnumerable<CourseProjectItr.Models.Items>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewBag.Title = Localizer["Title"];
+}
+
+<table class="table">
+    <tr>
+        <th>@Localizer["Name"]</th>
+        <th>@Localizer["Review"]</th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.ImageUrl != null)
+                    {
+                        <img src="@Url.Content(item.ImageUrl)" alt="Image" style="width: 150px; height: 150px;" />
+                    }
+                </td>
+                <td>@item.Name</td>
+                <td>@item.Review</td>
+            </tr>
+        }
+    }
+</table>

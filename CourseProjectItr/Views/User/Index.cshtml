@@ -1,0 +1,56 @@
+﻿@model CourseProjectItr.Models.User
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewBag.Title = Localizer["Title"];
+}
+
+<table>
+    <tbody>
+        <tr><th>@Localizer["Name"]:</th><td>@Model.NickName</td></tr>
+        <tr><th>@Localizer["Email"]:</th><td>@Model.Email</td></tr>
+        <tr><th>@Localizer["FirstName"]:</th><td>@Model.FirstName</td></tr>
+        <tr><th>@Localizer["LastName"]:</th><td>@Model.LastName</td></tr>
+        <tr><th>@Localizer["Age"]:</th><td>@Model.Age</td></tr>
+        <tr><th>@Localizer["Register"]:</th><td>@Model.RegisterDate</td></tr>
+        <tr><th>@Localizer["LastLogin"]:</th><td>@Model.LastLogin</td></tr>
+    </tbody>
+</table>
+<a class="btn btn-sm btn-primary" asp-controller="User" asp-action="Edit" asp-route-id="@Model.Id">@Localizer["Edit"]</a>
+<form>
+    <div class="row">
+        <a asp-controller="Collection" asp-action="Collection" asp-route-userID="@Model.Id">@Localizer["Create"]</a>
+        <table class="table">
+            <tr>
+                <th>@Localizer["Image"]</th>
+                <th>@Localizer["NameCol"]</th>
+                <th>@Localizer["Category"]</th>
+                <th>@Localizer["Review"]</th>
+            </tr>
+            @foreach (var collection in ViewBag.Collection)
+            {
+                <tr>
+                    <td>
+                        @if (collection.ImageUrl != null)
+                        {
+                            <img src="@Url.Content(collection.ImageUrl)" alt="Image" style="width: 150px; height: 150px;" />
+                        }
+                    </td>
+                    <td>@collection.Name</td>
+                    <td>@collection.Theme</td>
+                    <td>@collection.Review</td>
+                    <td>
+                        <a asp-controller="Collection" asp-action="ItemList" asp-route-collectionId="@collection.Id" asp-route-userID="@Model.Id" class="btn btn-sm btn-primary">Open</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Collection" asp-action="Edit" asp-route-Id="@collection.Id" class="btn btn-sm btn-danger">Edit</a>
+                    </td>
+                    <td>
+                        <a asp-controller="Collection" asp-action="Delete" asp-route-collectionId="@collection.Id" asp-route-userName="@Model.UserName" class="btn btn-sm btn-danger">Delete</a>
+                    </td>
+
+                </tr>
+            }
+        </table>
+    </div>
+</form>

@@ -1,0 +1,41 @@
+﻿@model IEnumerable<CourseProjectItr.Models.Items>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewBag.Title = Localizer["Title"];
+}
+
+<a asp-controller="Item" asp-action="Create" asp-route-collectionId="@ViewBag.Message" asp-route-userID="@ViewBag.UserID">@Localizer["AddItem"]</a>
+
+<table class="table">
+    <tr>
+        <th>@Localizer["Image"]</th>
+        <th>@Localizer["Name"]</th>
+        <th>@Localizer["Review"]</th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @if (item.ImageUrl != null)
+                    {
+                        <img src="@Url.Content(item.ImageUrl)" alt="Image" style="width: 150px; height: 150px;" />
+                    }
+                </td>
+                <td>@item.Name</td>
+                <td>@item.Review</td>
+                <td>
+                    <a asp-controller="Item" asp-action="Index" asp-route-itemID="@item.Id" class="btn btn-sm btn-danger">@Localizer["Open"]</a>
+                </td>
+                <td>
+                    <a asp-controller="Item" asp-action="Edit" asp-route-Id="@item.Id" class="btn btn-sm btn-danger">@Localizer["Edit"]</a>
+                </td>
+                <td>
+                    <a asp-controller="Items" asp-action="Delete" asp-route-itemId="@item.Id" class="btn btn-sm btn-danger">@Localizer["Delete"]</a>
+                </td>
+            </tr>
+        }
+    }
+</table>

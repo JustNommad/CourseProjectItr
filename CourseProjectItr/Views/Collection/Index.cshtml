@@ -1,0 +1,32 @@
+﻿@model IEnumerable<CourseProjectItr.Models.Collections>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewBag.Title = Localizer["Main Page"];
+}
+
+<table class="table">
+    <tr>
+        <th>@Localizer["Image"]</th>
+        <th>@Localizer["Name"]</th>
+        <th>@Localizer["Category"]</th>
+        <th>@Localizer["Review"]</th>
+    </tr>
+    @foreach (var collection in Model)
+    {
+        <tr>
+            <td>
+                @if (collection.ImageUrl != null)
+                {
+                    <img src="@Url.Content(collection.ImageUrl)" alt="Image" style="width: 150px; height: 150px;" />
+                }
+            </td>
+            <td>@collection.Name</td>
+            <td>@collection.Theme</td>
+            <td>@collection.Review</td>
+            <td>
+                <a asp-action="ItemList" asp-route-collectionId="@collection.Id" class="btn btn-sm btn-primary">@Localizer["Open"]</a>
+            </td>
+        </tr>
+    }
+</table>

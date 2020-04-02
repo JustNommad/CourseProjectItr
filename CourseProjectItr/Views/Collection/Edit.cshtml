@@ -1,0 +1,91 @@
+﻿@model CourseProjectItr.ViewModels.EditCollectionViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@{
+    ViewBag.Title = Localizer["Edit"];
+}
+<form asp-action="Edit" asp-controller="Collection" enctype="multipart/form-data">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <div class="form-group">
+        <input type="hidden" asp-for="Id" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Name" class="control-label">@Localizer["Name"]</label>
+        <input type="text" asp-for="Name" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Theme" class="control-label">@Localizer["Category"]</label>
+        <input type="text" asp-for="Theme" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Review" class="control-label">@Localizer["Review"]</label>
+        <input type="text" asp-for="Review" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ImageFile" class="control-label">@Localizer["Image"]</label>
+        <input type="file" asp-for="ImageFile" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="OneText" class="control-label">@Localizer["TextField"]</label>
+        <input type="text" asp-for="OneText" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="SecondText" class="control-label">@Localizer["TextField"]</label>
+        <input type="text" asp-for="SecondText" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="ThirdText" class="control-label">@Localizer["TextField"]</label>
+        <input type="text" asp-for="ThirdText" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="One" class="control-label">@Localizer["TextString"]</label>
+        <input type="text" asp-for="One" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Second" class="control-label">@Localizer["TextString"]</label>
+        <input type="text" asp-for="Second" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Third" class="control-label">@Localizer["TextString"]</label>
+        <input type="text" asp-for="Third" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CheckBox1" class="control-label">@Localizer["CheckBox"]</label>
+        <input type="text" asp-for="CheckBox1" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CheckBox2" class="control-label">@Localizer["CheckBox"]</label>
+        <input type="text" asp-for="CheckBox2" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="CheckBox3" class="control-label">@Localizer["CheckBox"]</label>
+        <input type="text" asp-for="CheckBox3" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="NumberOne" class="control-label">@Localizer["Number"]</label>
+        <input type="text" asp-for="NumberOne" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="NumberSecond" class="control-label">@Localizer["Number"]</label>
+        <input type="text" asp-for="NumberSecond" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="NumberThird" class="control-label">@Localizer["Number"]</label>
+        <input type="text" asp-for="NumberThird" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Time1" class="control-label">@Localizer["Date"]</label>
+        <input type="text" asp-for="Time1" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Time2" class="control-label">@Localizer["Date"]</label>
+        <input type="text" asp-for="Time2" class="form-control" />
+    </div>
+    <div class="form-group">
+        <label asp-for="Time3" class="control-label">@Localizer["Date"]</label>
+        <input type="text" asp-for="Time3" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" value="@Localizer["Save"]" class="btn btn-outline-secondary" />
+    </div>
+</form>

@@ -1,0 +1,42 @@
+﻿@model CourseProjectItr.ViewModels.LoginViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+
+<h2>@Localizer["Authorization"]</h2>
+<form method="post" asp-controller="Account" asp-action="Login"
+      asp-route-returnUrl="@Model.ReturnUrl">
+    <div class="validation" asp-validation-summary="ModelOnly" />
+    <div>
+        <div class="form-group">
+            <label asp-for="Email">@Localizer["Email"]</label>
+            <input type="text" asp-for="Email" />
+            <span asp-validation-for="Email" />
+        </div>
+        <div class="form-group">
+            <label asp-for="Password">@Localizer["Password"]</label>
+            <input asp-for="Password" />
+            <span asp-validation-for="Password" />
+        </div>
+        <div class="form-group">
+            <input type="submit" value="@Localizer["Sign in"]" class="btn btn-outline-dark" />
+        </div>
+    </div>
+</form>
+<hr />
+@{
+    if ((Model.ExternalLogins?.Count ?? 0) == 0)
+    {
+        <div>No external logins configured.</div>
+    }
+    else
+    {
+        <form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+            <div>
+                @foreach (var provider in Model.ExternalLogins)
+                {
+                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Login usin your @provider.DisplayName account">@provider.DisplayName</button>
+                }
+            </div>
+        </form>
+    }
+}
