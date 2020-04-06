@@ -117,6 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Admin" xml:space="preserve">
+    <value>Панель администратора</value>
+    <comment>Панель администратора</comment>
+  </data>
   <data name="Age" xml:space="preserve">
     <value>Возраст</value>
     <comment>Возраст</comment>
@@ -129,12 +133,20 @@
     <value>Создать коллекцию</value>
     <comment>Создать коллекцию</comment>
   </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Удалить</value>
+    <comment>Удалить коллекцию</comment>
+  </data>
   <data name="Edit" xml:space="preserve">
     <value>Изменить профиль</value>
     <comment>Изменить профиль</comment>
   </data>
+  <data name="EditCol" xml:space="preserve">
+    <value>Изменить</value>
+    <comment>Изменить коллекция</comment>
+  </data>
   <data name="Email" xml:space="preserve">
-    <value>Email</value>
+    <value>Почта</value>
     <comment>Почта</comment>
   </data>
   <data name="FirstName" xml:space="preserve">
@@ -160,6 +172,10 @@
   <data name="NameCol" xml:space="preserve">
     <value>Название</value>
     <comment>Название</comment>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Открыть</value>
+    <comment>Открыть коллекцию</comment>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Дата регистрации</value>

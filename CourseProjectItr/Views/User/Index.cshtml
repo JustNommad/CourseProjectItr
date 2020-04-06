@@ -5,52 +5,66 @@
     ViewBag.Title = Localizer["Title"];
 }
 
-<table>
-    <tbody>
-        <tr><th>@Localizer["Name"]:</th><td>@Model.NickName</td></tr>
-        <tr><th>@Localizer["Email"]:</th><td>@Model.Email</td></tr>
-        <tr><th>@Localizer["FirstName"]:</th><td>@Model.FirstName</td></tr>
-        <tr><th>@Localizer["LastName"]:</th><td>@Model.LastName</td></tr>
-        <tr><th>@Localizer["Age"]:</th><td>@Model.Age</td></tr>
-        <tr><th>@Localizer["Register"]:</th><td>@Model.RegisterDate</td></tr>
-        <tr><th>@Localizer["LastLogin"]:</th><td>@Model.LastLogin</td></tr>
-    </tbody>
-</table>
-<a class="btn btn-sm btn-primary" asp-controller="User" asp-action="Edit" asp-route-id="@Model.Id">@Localizer["Edit"]</a>
-<form>
-    <div class="row">
-        <a asp-controller="Collection" asp-action="Collection" asp-route-userID="@Model.Id">@Localizer["Create"]</a>
-        <table class="table">
-            <tr>
-                <th>@Localizer["Image"]</th>
-                <th>@Localizer["NameCol"]</th>
-                <th>@Localizer["Category"]</th>
-                <th>@Localizer["Review"]</th>
-            </tr>
-            @foreach (var collection in ViewBag.Collection)
-            {
-                <tr>
-                    <td>
-                        @if (collection.ImageUrl != null)
-                        {
-                            <img src="@Url.Content(collection.ImageUrl)" alt="Image" style="width: 150px; height: 150px;" />
-                        }
-                    </td>
-                    <td>@collection.Name</td>
-                    <td>@collection.Theme</td>
-                    <td>@collection.Review</td>
-                    <td>
-                        <a asp-controller="Collection" asp-action="ItemList" asp-route-collectionId="@collection.Id" asp-route-userID="@Model.Id" class="btn btn-sm btn-primary">Open</a>
-                    </td>
-                    <td>
-                        <a asp-controller="Collection" asp-action="Edit" asp-route-Id="@collection.Id" class="btn btn-sm btn-danger">Edit</a>
-                    </td>
-                    <td>
-                        <a asp-controller="Collection" asp-action="Delete" asp-route-collectionId="@collection.Id" asp-route-userName="@Model.UserName" class="btn btn-sm btn-danger">Delete</a>
-                    </td>
+<link rel="stylesheet" href="~/css/userPage.css" />
 
-                </tr>
-            }
+<div class="mainfield">
+    <h1>@Model.NickName</h1>
+    <h2 class="text-muted">@ViewBag.Role</h2>
+        <div class="create-button">
+            <a class="btn btn-sm btn-success" asp-controller="Collection" asp-action="Collection" asp-route-userID="@Model.Id">@Localizer["Create"]</a>
+        </div>
+</div>
+<hr />
+<div class="flex-container">
+    <div class="box-1">
+        <table>
+            <tbody>
+                <tr><th>@Localizer["Email"]:</th><td>@Model.Email</td></tr>
+                <tr><th>@Localizer["FirstName"]:</th><td>@Model.FirstName</td></tr>
+                <tr><th>@Localizer["LastName"]:</th><td>@Model.LastName</td></tr>
+                <tr><th>@Localizer["Age"]:</th><td>@Model.Age</td></tr>
+                <tr><th>@Localizer["Register"]:</th><td>@Model.RegisterDate</td></tr>
+                <tr><th>@Localizer["LastLogin"]:</th><td>@Model.LastLogin</td></tr>
+            </tbody>
         </table>
+        <div class="edit-button">
+            <a class="btn btn-lg btn-block btn-primary" asp-controller="User" asp-action="Edit" asp-route-id="@Model.Id" type="submit">@Localizer["Edit"]</a>
+            @if (ViewBag.Role == "admin" || ViewBag.Role == "author")
+            {
+                <a class="btn btn-lg btn-block btn-primary" asp-controller="User" asp-action="AdminList" type="submit">@Localizer["Admin"]</a>
+            }
+        </div>
     </div>
-</form>
+    <div class="box-2">
+        <form>
+            <div class="row">
+                @foreach (var collection in ViewBag.Collection)
+                {
+                    <div class="col-md-4">
+                        <div class="card mb-4 shadow-sm">
+                            @if (collection.ImageUrl != null)
+                            {
+                                <img src="@Url.Content(collection.ImageUrl)" alt="Image" style="width: 100%;max-height: 300px;" />
+                            }
+                            <div class="card-body">
+                                <h3 class="card-text">@collection.Name</h3>
+                                <p class="card-text">@collection.Review</p>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="btn-group">
+                                        <a asp-controller="Collection" asp-action="ItemList" asp-route-collectionId="@collection.Id"
+                                           asp-route-userID="@Model.Id" type="button" class="btn btn-sm btn-outline-secondary">@Localizer["Open"]</a>
+                                        <a asp-controller="Collection" asp-action="Edit" asp-route-Id="@collection.Id"
+                                           asp-route-userName="@User.Identity.Name" type="button" class="btn btn-sm btn-outline-secondary">@Localizer["EditCol"]</a>
+                                        <a asp-controller="Collection" asp-action="Delete" asp-route-collectionId="@collection.Id"
+                                           asp-route-userName="@Model.UserName" type="button" class="btn btn-sm btn-outline-secondary">@Localizer["Delete"]</a>
+                                    </div>
+                                    <small class="text-muted">@collection.Theme</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </form>
+    </div>
+</div>

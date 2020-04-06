@@ -62,7 +62,6 @@ C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netc
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.cs
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.cs
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
-C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.Google.dll
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\Razor\Views\Collection\Collection.cshtml.g.cs
@@ -108,12 +107,10 @@ C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netc
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\courseprojectcloud-b3eea2fe5682.json
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\Razor\Views\Collection\Edit.cshtml.g.cs
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\Razor\Views\Item\Edit.cshtml.g.cs
-C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\AspNet.Security.OAuth.Vkontakte.dll
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.MicrosoftAccount.dll
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\Korzh.EasyQuery.dll
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\Korzh.EasyQuery.Db.dll
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\Korzh.EasyQuery.Linq.dll
-C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\CourseProjectItr.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\Razor\Views\Search\Search.cshtml.g.cs
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\Razor\Views\Item\Create.cshtml.g.cs
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\ru\CourseProjectItr.resources.dll
@@ -128,8 +125,6 @@ C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netc
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_SelectLanguagePartial.cshtml.g.cs
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\CourseProjectItr.Resources.Views.Account.Login.en.resources
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\CourseProjectItr.Resources.Views.Account.Login.ru.resources
-C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\CourseProjectItr.Resources.Views.Account.Register.en.resources
-C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\CourseProjectItr.Resources.Views.Account.Register.ru.resources
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\CourseProjectItr.Resources.Views.Collection.Collection.en.resources
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\CourseProjectItr.Resources.Views.Collection.Collection.ru.resources
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\CourseProjectItr.Resources.Views.Collection.Edit.en.resources
@@ -164,3 +159,14 @@ C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netc
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\CourseProjectItr.Resources.ViewModels.LoginViewModel.ru.resources
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\CourseProjectItr.Resources.ViewModels.RegisterViewModel.en.resources
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\CourseProjectItr.Resources.ViewModels.RegisterViewModel.ru.resources
+C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\MessagePack.dll
+C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Http.Connections.Client.dll
+C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\Microsoft.Azure.SignalR.Common.dll
+C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\Microsoft.Azure.SignalR.dll
+C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\Microsoft.Azure.SignalR.Protocols.dll
+C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Debug\netcoreapp3.1\CourseProjectItr.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll

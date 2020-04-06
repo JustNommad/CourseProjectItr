@@ -13,6 +13,7 @@ namespace CourseProjectItr.ViewModels
         [Required(ErrorMessage = "PasswordRequired")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        public bool Remember { get; set; }
         public string ReturnUrl { get; set; }
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
     }

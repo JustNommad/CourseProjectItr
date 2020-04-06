@@ -126,7 +126,7 @@
     <comment>Удалить айтем</comment>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Редактировать</value>
+    <value>Изменить</value>
     <comment>Редактирование предмета</comment>
   </data>
   <data name="Image" xml:space="preserve">

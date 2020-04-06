@@ -16,8 +16,7 @@ namespace CourseProjectItr.ViewModels
         [Required(ErrorMessage = "LastRequired")]
         public string LastName { get; set; }
         [Required(ErrorMessage = "AgeRequired")]
-        [Range(1, 110, ErrorMessage = "AgeRange")]
-        public int Age { get; set; }
+        public string Age { get; set; }
         [Required(ErrorMessage = "PasswordRequired")]
         [DataType(DataType.Password)]
         public string Password { get; set; }

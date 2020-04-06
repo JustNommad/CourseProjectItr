@@ -16,6 +16,6 @@ namespace CourseProjectItr.Models
         public string ItemId { get; set; }
         public string UserId { get; set; }
         public string UserName { get; set; }
-        public string Number { get; set; }
+        public int Number { get; set; }
     }
 }

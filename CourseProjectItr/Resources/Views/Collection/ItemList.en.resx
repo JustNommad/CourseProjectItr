@@ -122,11 +122,11 @@
     <comment>Добавление айтема</comment>
   </data>
   <data name="Delete" xml:space="preserve">
-    <value>Delete item</value>
+    <value>Delete</value>
     <comment>Удалить айтем</comment>
   </data>
   <data name="Edit" xml:space="preserve">
-    <value>Edit item</value>
+    <value>Edit</value>
     <comment>Редактирование предмета</comment>
   </data>
   <data name="Image" xml:space="preserve">
@@ -138,7 +138,7 @@
     <comment>Имя предмета</comment>
   </data>
   <data name="Open" xml:space="preserve">
-    <value>Open item</value>
+    <value>Open</value>
     <comment>Открытие содержимого предмета</comment>
   </data>
   <data name="Review" xml:space="preserve">

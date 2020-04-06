@@ -1,0 +1,28 @@
+﻿.items-list{
+    padding-left:100px;
+    padding-right:100px;
+}
+
+h1 {
+    font-size: 72px;
+}
+
+h2 {
+    font-size: 28px;
+}
+
+.mainfield {
+    position: absolute;
+    left:400px;
+    top:70px;
+
+}
+
+.create-button {
+    position: absolute;
+    text-align: center;
+    text-decoration: none;
+    left:630px;
+    top: 110px;
+    color: white;
+}

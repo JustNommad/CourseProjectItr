@@ -5,37 +5,60 @@
     ViewBag.Title = Localizer["Title"];
 }
 
-<a asp-controller="Item" asp-action="Create" asp-route-collectionId="@ViewBag.Message" asp-route-userID="@ViewBag.UserID">@Localizer["AddItem"]</a>
+<link rel="stylesheet" href="~/css/itemsList.css" />
 
-<table class="table">
-    <tr>
-        <th>@Localizer["Image"]</th>
-        <th>@Localizer["Name"]</th>
-        <th>@Localizer["Review"]</th>
-    </tr>
+<div class="image-collection">
+    @if (ViewBag.Collection.ImageUrl != null)
+    {
+        <img src="@Url.Content(ViewBag.Collection.ImageUrl)" alt="Image" style="width: 18%;max-height: 300px;" />
+    }
+    <div class="mainfield">
+        <h1>@ViewBag.Collection.Name</h1>
+        <h2 class="text-muted">@ViewBag.Collection.Theme</h2>
+        <h2 class="text-muted">@ViewBag.Collection.Review</h2>
+    </div>
+    @if (User.Identity.Name == ViewBag.Creator)
+    {
+        <div class="create-button">
+            <a class="btn btn-sm btn-success" asp-controller="Item" asp-action="Create" asp-route-collectionId="@ViewBag.Collection.Id" asp-route-userID="@ViewBag.UserID">@Localizer["AddItem"]</a>
+        </div>
+    }
+</div>
+<hr />
+<div class="items-list">
     @if (Model != null)
     {
-        foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @if (item.ImageUrl != null)
-                    {
-                        <img src="@Url.Content(item.ImageUrl)" alt="Image" style="width: 150px; height: 150px;" />
-                    }
-                </td>
-                <td>@item.Name</td>
-                <td>@item.Review</td>
-                <td>
-                    <a asp-controller="Item" asp-action="Index" asp-route-itemID="@item.Id" class="btn btn-sm btn-danger">@Localizer["Open"]</a>
-                </td>
-                <td>
-                    <a asp-controller="Item" asp-action="Edit" asp-route-Id="@item.Id" class="btn btn-sm btn-danger">@Localizer["Edit"]</a>
-                </td>
-                <td>
-                    <a asp-controller="Items" asp-action="Delete" asp-route-itemId="@item.Id" class="btn btn-sm btn-danger">@Localizer["Delete"]</a>
-                </td>
-            </tr>
-        }
+        <div class="album py-5 bg-light">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+                    <div class="card mb-3" style="max-width: 540px;">
+                        <div class="row no-gutters">
+                            <div class="col-md-4">
+                                @if (item.ImageUrl != null)
+                                {
+                                    <img src="@Url.Content(item.ImageUrl)" alt="Image" class="card-img" />
+                                }
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">@item.Name</h5>
+                                    <p class="card-text">@item.Review</p>
+                                    <p class="card-text"><small class="text-muted">@ViewBag.Collection.Theme</small></p>
+                                    <div class="btn-group">
+                                        <a asp-controller="Item" asp-action="Index" asp-route-itemID="@item.Id" class="btn btn-sm btn-outline-secondary">@Localizer["Open"]</a>
+                                        @if (User.Identity.Name == ViewBag.Creator)
+                                        { 
+                                            <a asp-controller="Item" asp-action="Edit" asp-route-Id="@item.Id" asp-route-userName="@User.Identity.Name" class="btn btn-sm btn-outline-secondary">@Localizer["Edit"]</a>
+                                            <a asp-controller="Items" asp-action="Delete" asp-route-itemId="@item.Id" class="btn btn-sm btn-outline-secondary">@Localizer["Delete"]</a>
+                                         }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
     }
-</table>
+</div>

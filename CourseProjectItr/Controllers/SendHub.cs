@@ -7,9 +7,9 @@ namespace CourseProjectItr.Controllers
 {
     public class SendHub : Hub
     {
-        public async Task SendComment(string message, string userName)
+        public async Task SendComment(string message, string userName, string itemID)
         {
-            await Clients.All.SendAsync("SendComment", message, userName);
+            await Clients.All.SendAsync("SendComment", message, userName, itemID);
         }
         public async Task SendLike(int like)
         {

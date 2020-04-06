@@ -1,0 +1,24 @@
+﻿h1 {
+    font-size: 72px;
+}
+
+h2 {
+    font-size: 28px;
+    margin-right:20px;
+}
+
+th, td, .likeLable{
+    font-size:28px;
+    padding-bottom:10px;    
+}
+
+.mainfield {
+    position: absolute;
+    left: 400px;
+    top: 70px;
+}
+
+.likeButton{
+    position:absolute;
+    top:350px;
+}

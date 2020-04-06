@@ -1,42 +1,113 @@
 ﻿@model CourseProjectItr.ViewModels.LoginViewModel
 @using Microsoft.AspNetCore.Mvc.Localization
-@inject IViewLocalizer Localizer
-
-<h2>@Localizer["Authorization"]</h2>
-<form method="post" asp-controller="Account" asp-action="Login"
-      asp-route-returnUrl="@Model.ReturnUrl">
-    <div class="validation" asp-validation-summary="ModelOnly" />
-    <div>
-        <div class="form-group">
-            <label asp-for="Email">@Localizer["Email"]</label>
-            <input type="text" asp-for="Email" />
-            <span asp-validation-for="Email" />
-        </div>
-        <div class="form-group">
-            <label asp-for="Password">@Localizer["Password"]</label>
-            <input asp-for="Password" />
-            <span asp-validation-for="Password" />
-        </div>
-        <div class="form-group">
-            <input type="submit" value="@Localizer["Sign in"]" class="btn btn-outline-dark" />
-        </div>
-    </div>
-</form>
-<hr />
 @{
-    if ((Model.ExternalLogins?.Count ?? 0) == 0)
-    {
-        <div>No external logins configured.</div>
-    }
-    else
-    {
-        <form method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
-            <div>
-                @foreach (var provider in Model.ExternalLogins)
-                {
-                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Login usin your @provider.DisplayName account">@provider.DisplayName</button>
-                }
-            </div>
-        </form>
-    }
+    Layout = null;
 }
+@inject IViewLocalizer Localizer
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@Localizer["Login"]</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="~/css/signin.css" />
+    <script src="~/js/script.js"></script>
+</head>
+<body>
+    <div class="box" id="box"></div>
+    <div class="login-container">
+        <div class="box-1">
+            <form class="form-signin text-center" method="post" asp-controller="Account" asp-action="Login"
+                  asp-route-returnUrl="@Model.ReturnUrl">
+                <h1 class="h3 mb-3 font-weight-normal"> @Localizer["PleaseSignin"]</h1>
+                <label asp-for="Email" class="sr-only">@Localizer["Email"]</label>
+                <input type="email" asp-for="Email" class="form-control" placeholder="@Localizer["Email"]" required=""
+                       autofocus="">
+                <label asp-for="Password" class="sr-only">@Localizer["Password"]</label>
+                <input type="password" asp-for="Password" class="form-control" placeholder="@Localizer["Password"]"
+                       required="">
+                <div class="checkbox mb-3">
+                    <label>
+                        <input asp-for="Remember" type="checkbox"> @Localizer["Remember"]
+                    </label>
+                </div>
+                <button class="btn btn-lg btn-primary btn-block mb-1" type="submit">@Localizer["Sign in"]</button>
+                <a id="button" class="text-muted">@Localizer["FirstTime"] --></a>
+            </form>
+            <hr class="hr" />
+            @{
+                if ((Model.ExternalLogins?.Count ?? 0) == 0)
+                {
+                    <div>No external logins configured.</div>
+                }
+                else
+                {
+                    <form class="text-center" method="post" asp-action="ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl">
+                        <div>
+                            @foreach (var provider in Model.ExternalLogins)
+                            {
+                                <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Login usin your @provider.DisplayName account">
+                                    @provider.DisplayName
+                                </button>
+                            }
+                        </div>
+                    </form>
+                }
+            }
+        </div>
+        <div class="box-2">
+            <form class="form-register text-center">
+                <h1 class="h3 mb-3 font-weight-normal">@Localizer["Register"]</h1>
+                <div class="register-input">
+                    <label for="Email" class="sr-only">@Localizer["Email"]</label>
+                    <input type="email" id="inputEmail" class="form-control" placeholder="@Localizer["Email"]" required=""
+                           autofocus="">
+                </div>
+                <div class="register-input">
+                    <label for="NickName" class="sr-only">@Localizer["UserName"]</label>
+                    <input type="text" id="inputNickName" class="form-control" placeholder="@Localizer["UserName"]" required=""
+                           autofocus="">
+                </div>
+                <div class="register-block">
+                    <div class="register-input flex-1">
+                        <label for="FirstName" class="sr-only">@Localizer["FirstName"]</label>
+                        <input type="text" id="inputFirstName" class="form-control" placeholder="@Localizer["FirstName"]"
+                               required="" autofocus="">
+                    </div>
+                    <div class="register-input flex-1">
+                        <label for="LastName" class="sr-only">@Localizer["LastName"]</label>
+                        <input type="text" id="inputLastName" class="form-control" placeholder="@Localizer["LastName"]"
+                               required="" autofocus="">
+                    </div>
+                </div>
+                <div class="register-input">
+                    <label for="Age" class="sr-only">@Localizer["Age"]</label>
+                    <input type="text" id="inputAge" class="form-control" placeholder="@Localizer["Age"]" required=""
+                           autofocus="">
+                </div>
+                <div class="register-block">
+                    <div class="register-input flex-1">
+                        <label for="Password" class="sr-only">@Localizer["Password"]</label>
+                        <input type="password" id="inputPassword" class="form-control" placeholder="@Localizer["Password"]"
+                               required="">
+                    </div>
+                    <div class="register-input flex-1   ">
+                        <label for="ConfirmPassword" class="sr-only">@Localizer["ConfirmPassword"]</label>
+                        <input type="password" id="confirmPassword" class="form-control"
+                               placeholder="@Localizer["ConfirmPassword"]" required="">
+                    </div>
+                </div>
+                <div class="register-input">
+                    <button class="btn btn-lg btn-primary btn-block" type="button"
+                            onclick="sendRegisterData()">
+                        @Localizer["Register"]
+                    </button>
+                </div>
+            </form>
+        </div>
+</body>
+</html>

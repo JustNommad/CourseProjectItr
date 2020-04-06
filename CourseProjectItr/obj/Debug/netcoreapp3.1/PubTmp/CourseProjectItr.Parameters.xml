@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="IIS Web Application Name" description="" value="CourseProjectItr" tags="IisApp">
+    <parameterEntry kind="ProviderPath" scope="IisApp" match="^C:\\Users\\JustNomad\\source\\repos\\CourseProjectItr\\CourseProjectItr\\obj\\Debug\\netcoreapp3\.1\\PubTmp\\Out\\$" />
+  </parameter>
+  <parameter name="CourseProjectItr.Models.ApplicationContext" description="" value="Data Source=tcp:courseprojectitrdbserver.database.windows.net,1433;Initial Catalog=CourseProjectItr_db;User Id=JustNomad@courseprojectitrdbserver;Password=Rher062003vfrcbv" tags="dbfullsql">
+    <parameterEntry kind="ProviderPath" scope="dbfullsql" match="^C:\\Users\\JustNomad\\source\\repos\\CourseProjectItr\\CourseProjectItr\\obj\\Debug\\netcoreapp3\.1\\PubTmp\\EFSQLScripts\\CourseProjectItr\.Models\.ApplicationContext\.sql$" />
+  </parameter>
+</parameters>

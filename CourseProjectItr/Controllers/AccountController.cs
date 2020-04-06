@@ -38,7 +38,7 @@ namespace CourseProjectItr.Controllers
             return Json(true);
         }
         [HttpPost]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register([FromBody]RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
@@ -49,7 +49,7 @@ namespace CourseProjectItr.Controllers
                     NickName = model.NickName,
                     FirstName = model.FirstName,
                     LastName = model.LastName,
-                    Age = model.Age,
+                    Age = int.Parse(model.Age),
                     LastLogin = DateTime.Now,
                     RegisterDate = DateTime.Now,
                 };
@@ -90,7 +90,9 @@ namespace CourseProjectItr.Controllers
             if (ModelState.IsValid)
             {
                 User user = await _userManager.FindByEmailAsync(model.Email);
-                var roleIdentity = await _userManager.GetRolesAsync(user);
+                if (user != null)
+                {
+                    var roleIdentity = await _userManager.GetRolesAsync(user);
                 foreach (var check in roleIdentity)
                 {
                     if (check == "blocked")
@@ -100,8 +102,7 @@ namespace CourseProjectItr.Controllers
                         return View(model);
                     }
                 }
-                if (user != null)
-                {
+
                     user.LastLogin = DateTime.Now;
                     await _userManager.UpdateAsync(user);
                 }
@@ -113,7 +114,7 @@ namespace CourseProjectItr.Controllers
                 }
 
                 var result =
-                    await _signInManager.PasswordSignInAsync(model.Email, model.Password, false, false);
+                    await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.Remember, false);
 
                 if (result.Succeeded)
                 {
@@ -212,8 +213,7 @@ namespace CourseProjectItr.Controllers
             }
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpGet]
         public async Task<IActionResult> Logout(string userName)
         {
             var user = await _userManager.FindByNameAsync(userName);

@@ -2,6 +2,7 @@
 using CourseProjectItr.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -20,11 +21,13 @@ namespace CourseProjectItr.Controllers
         private ApplicationContext db;
         private readonly IStringLocalizer<CollectionController> _localizer;
         private readonly ICloudStorage _cloudStorage;
-        public CollectionController(ApplicationContext context, ICloudStorage cloudStorage, IStringLocalizer<CollectionController> localizer)
+        private readonly UserManager<User> _userManager;
+        public CollectionController(ApplicationContext context, ICloudStorage cloudStorage, IStringLocalizer<CollectionController> localizer, UserManager<User> userManager)
         {
             db = context;
             _cloudStorage = cloudStorage;
             _localizer = localizer;
+            _userManager = userManager;
         }
 
         [HttpGet]
@@ -36,8 +39,11 @@ namespace CourseProjectItr.Controllers
         [HttpGet]
         public async Task<IActionResult> ItemList(string collectionId, string userID)
         {
-            ViewBag.Message = collectionId;
+            Collections collection = await db.Collections.FirstOrDefaultAsync(c => c.Id == collectionId);
+            User user = await _userManager.FindByIdAsync(collection.UserId);
+            ViewBag.Collection = collection;
             ViewBag.UserID = userID;
+            ViewBag.Creator = user.UserName;
             var itemsID = db.ItemsOfCollections.Where(i => i.CollectionId == collectionId).Select(it => it.Id).ToList();
             List<Items> itemsList = new List<Items>();
             if (itemsID != null && itemsID.Count != 0)
@@ -75,7 +81,7 @@ namespace CourseProjectItr.Controllers
         public async Task<IActionResult> Collection(CollectionViewModel model)
         {
                 Collections collections = await db.Collections.FirstOrDefaultAsync(c => c.Name == model.Name);
-                if(collections == null)
+                if(collections == null && model.UserId != null)
                 {
                     collections = new Collections
                     {
@@ -123,42 +129,55 @@ namespace CourseProjectItr.Controllers
             var fileNameForStorage = $"{title}-{DateTime.Now.ToString("yyyyMMddHHmmss")}{fileExtension}";
             return fileNameForStorage;
         }
-        public async Task<IActionResult> Edit(string id)
+
+        public async Task<IActionResult> Edit(string id, string userName)
         {
             Collections collection = await db.Collections.FindAsync(id);
+            User user = await _userManager.FindByNameAsync(userName);
+
             if (collection == null)
             {
                 return NotFound();
             }
-            EditCollectionViewModel model = new EditCollectionViewModel
+            if(collection.UserId == user.Id)
             {
-               Id  = collection.Id,
-               UserId = collection.UserId,
-               Review = collection.Review,
-               Name = collection.Name,
-               Theme = collection.Theme,
-               ImageUrl = collection.ImageUrl,
-               ImageStorageName = collection.ImageStorageName,
-               OneText = collection.OneText,
-               SecondText = collection.SecondText,
-               ThirdText = collection.ThirdText,
-               CheckBox1 = collection.CheckBox1,
-               CheckBox2 = collection.CheckBox2,
-               CheckBox3 = collection.CheckBox3,
-               Time1 = collection.Time1,
-               Time2 = collection.Time2,
-               Time3 = collection.Time3,
-               One = collection.One, 
-               Second = collection.Second,
-               Third = collection.Third,
-               NumberOne = collection.NumberOne,
-               NumberSecond = collection.NumberSecond,
-               NumberThird = collection.NumberThird
-            };
-            return View(model);
+                EditCollectionViewModel model = new EditCollectionViewModel
+                {
+                    Id = collection.Id,
+                    UserId = collection.UserId,
+                    Review = collection.Review,
+                    Name = collection.Name,
+                    Theme = collection.Theme,
+                    ImageUrl = collection.ImageUrl,
+                    ImageStorageName = collection.ImageStorageName,
+                    OneText = collection.OneText,
+                    SecondText = collection.SecondText,
+                    ThirdText = collection.ThirdText,
+                    CheckBox1 = collection.CheckBox1,
+                    CheckBox2 = collection.CheckBox2,
+                    CheckBox3 = collection.CheckBox3,
+                    Time1 = collection.Time1,
+                    Time2 = collection.Time2,
+                    Time3 = collection.Time3,
+                    One = collection.One,
+                    Second = collection.Second,
+                    Third = collection.Third,
+                    NumberOne = collection.NumberOne,
+                    NumberSecond = collection.NumberSecond,
+                    NumberThird = collection.NumberThird
+                };
+                return View(model);
+            }
+            else
+            {
+                ModelState.AddModelError("", "You cant edit this collection");
+                return View();
+            }
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "author, admin, user")]
         public async Task<IActionResult> Edit(EditCollectionViewModel model)
         {
             if (ModelState.IsValid)
@@ -243,5 +262,6 @@ namespace CourseProjectItr.Controllers
         {
             ViewBag.Img = file;
         }
+       
     }
 }

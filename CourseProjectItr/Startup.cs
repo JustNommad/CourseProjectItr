@@ -1,5 +1,4 @@
 using Google.Cloud.Diagnostics.AspNetCore;
-using Google.Cloud.Diagnostics.Common;
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -45,8 +44,6 @@ namespace CourseProjectItr
                     options.AccessDeniedPath = new PathString("/Account/Login");
                 });
 
-            services.AddDistributedMemoryCache();
-            services.AddSession();
             services.AddSignalR();
 
             services.AddAuthentication()
@@ -55,14 +52,19 @@ namespace CourseProjectItr
                         IConfigurationSection googleAuthNSection =
                             Configuration.GetSection("Authentication:Google");
 
-                        options.ClientId = googleAuthNSection["ClientId"];
-                        options.ClientSecret = googleAuthNSection["ClientSecret"];
+                        options.ClientId = "605381655727-pj71vggm8sj5jvddihc0fipsf694q8e8.apps.googleusercontent.com";
+                        options.ClientSecret = "eEITCw00jdDwid9Isc0CacdA";
                     })
                     .AddMicrosoftAccount(microsoftOptions =>
                     {
-                        microsoftOptions.ClientId = Configuration["Authentication:Microsoft:AppId"];
-                        microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:AppSecret"];
+                        microsoftOptions.ClientId = "ba50baef-866c-4754-861f-c3ba73e9559d";
+                        microsoftOptions.ClientSecret = "z@]84M6d:Vty?NH689DqyFnN:[LGFO5x";
                     }); ;
+
+            services.Configure<SecurityStampValidatorOptions>(options =>
+            {
+                options.ValidationInterval = TimeSpan.Zero;
+            });
 
             services.Configure<RequestLocalizationOptions>(options =>
             {
@@ -78,18 +80,13 @@ namespace CourseProjectItr
             });
 
             services.AddSingleton<ICloudStorage, GoogleCloudStorage>();
-            services.AddMvc();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage();
-            }
+            app.UseDeveloperExceptionPage();
 
             app.UseRouting();
-            app.UseSession();
             app.UseRequestLocalization();
             app.UseAuthentication();
             app.UseAuthorization();

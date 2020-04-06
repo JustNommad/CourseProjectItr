@@ -117,12 +117,34 @@ function sendDataD() {
         values = [];
     }
 }
+async function sendRegisterData() {
+    let email = document.getElementById("inputEmail").value;
+    let password = document.getElementById("inputPassword").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+    let nickname = document.getElementById("inputNickName").value;
+    let firstname = document.getElementById("inputFirstName").value;
+    let lastname = document.getElementById("inputLastName").value;
+    let age = document.getElementById("inputAge").value;
 
-function onSignIn(googleUser) {
-    var profile = googleUser.getBasicProfile();
-    var id_token = googleUser.getAuthResponse().id_token;
-    console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
-    console.log('Name: ' + profile.getName());
-    console.log('Image URL: ' + profile.getImageUrl());
-    console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    };
+    const result = await fetch('/Account/Register', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            Email: email,
+            NickName: nickname,
+            FirstName: firstname,
+            LastName: lastname,
+            Age: age,
+            Password: password,
+            ConfirmPassword: confirmPassword
+        })
+    })
+    window.location.href = '/Collection/Index';
+}
+function hiddenBox() {
+    var img = document.getElementById("box");
+    img.classList.toggle("hidden");
+}

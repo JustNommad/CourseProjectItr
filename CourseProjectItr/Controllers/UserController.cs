@@ -24,7 +24,10 @@ namespace CourseProjectItr.Controllers
         }
         [HttpGet]
         [Authorize(Roles = "author, admin")]
-        public IActionResult AdminList() => View(_userManager.Users.ToList());
+        public IActionResult AdminList()
+        {
+            return View(_userManager.Users.ToList());
+        }
 
         [HttpGet]
         public async Task<IActionResult> Index(string userName)
@@ -32,6 +35,8 @@ namespace CourseProjectItr.Controllers
             if (userName != null)
             {
                 User user = await _userManager.FindByNameAsync(userName);
+                var roleIdentity = await _userManager.GetRolesAsync(user);
+                ViewBag.Role = roleIdentity[0];
                 ViewBag.Collection = db.Collections.Where(c => c.UserId == user.Id).ToList();
                 return View(user);
             }
@@ -110,7 +115,7 @@ namespace CourseProjectItr.Controllers
             List<Comments> count = db.Comments.Where(c => c.ItemId == model.ItemID).ToList();
             if(user != null && item != null)
             {
-                Comments comment = new Comments { Comment = model.Comment, ItemId = model.ItemID, UserId = user.Id, UserName = user.UserName, Number = count.Count().ToString() };
+                Comments comment = new Comments { Comment = model.Comment, ItemId = model.ItemID, UserId = user.Id, UserName = user.NickName, Number = count.Count() };
                 db.Comments.Add(comment);
                 await db.SaveChangesAsync();
                 return Ok(comment);

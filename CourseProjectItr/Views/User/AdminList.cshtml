@@ -4,14 +4,16 @@
 @{
     ViewBag.Title = Localizer["AdminPanel"];
 }
-@if (User.Identity.IsAuthenticated)
-{
+<div class="container">
+    @if (User.Identity.IsAuthenticated)
+    {
     <div class="container">
         <nav class="navbar navbar-dark bg-dark">
             <form>
                 <button class="btn btn-success" type="button" onclick="sendDataUn()">@Localizer["Unblock"]</button>
                 <button class="btn btn-warning" type="button" onclick="sendDataB()">@Localizer["Block"]</button>
                 <button class="btn btn-danger" type="button" onclick="sendDataD()">@Localizer["Delete"]</button>
+                <button class="btn btn-danger" type="button" onclick="sendDataAd()">Admin</button>
             </form>
         </nav>
 
@@ -32,21 +34,22 @@
             <tbody>
                 @foreach (var user in Model)
                 {
-                    <tr>
-                        <th scope="row">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="@user.Id" name="users" unchecked>
-                                <label class="custom-control-label" for="@user.Id"></label>
-                            </div>
-                        </th>
-                        <td>@user.Id</td>
-                        <td><a asp-action="Index" asp-route-userName="@user.UserName">@user.FirstName @user.LastName</a></td>
-                        <td>@user.Email</td>
-                        <td>@user.RegisterDate</td>
-                        <td>@user.LastLogin</td>
-                    </tr>
+                <tr>
+                    <th scope="row">
+                        <div class="custom-control custom-checkbox">
+                            <input type="checkbox" class="custom-control-input" id="@user.Id" name="users" unchecked>
+                            <label class="custom-control-label" for="@user.Id"></label>
+                        </div>
+                    </th>
+                    <td>@user.Id</td>
+                    <td><a asp-action="Index" asp-route-userName="@user.UserName">@user.FirstName @user.LastName</a></td>
+                    <td>@user.Email</td>
+                    <td>@user.RegisterDate</td>
+                    <td>@user.LastLogin</td>
+                </tr>
                 }
             </tbody>
         </table>
     </div>
-}
+    }
+    </div>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Этот файл используется процессом публикации или упаковки вашего веб-проекта. Можно настроить поведение этого процесса,
+изменив этот файл MSBuild. Подробности см. на странице https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <EncryptedPassword>AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAA1Fuc65XqfUWcIJ04bcbzVAAAAAACAAAAAAAQZgAAAAEAACAAAAC6SQ2LGC5u04PrEcjiO9HsTp8G9HtG+CPsQ61r0I0jHwAAAAAOgAAAAAIAACAAAAAZ+ysmfXhyjFzhKF1gBRsZ8NkQztiSDH6kH0qbvYovkYAAAACRMUbeEGrwIE1f8vVkwZeq+WC7FPptke5Aj9xetxy8f0ynG234pxLHZr8RUjkcisJW/qGqcmiLXGzbu/rQ4rZbevyeJmYN6CRKe5YBcg/VcL0ZeAzwCfOYbclRpzr8VdwsAGrCKB9WnrC7Srz7xlfizI2WZWJUr+WuizU9ExineUAAAADoLQcBOtKTPLkR+Ju3nWa7Oxj3rYgWOrc7Y/HFnQuKP3ldcKSCpP4brYSpBRkTtA1ts52KUocaIDai4UJQtv1l</EncryptedPassword>
+  </PropertyGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DefaultConnection">
+      <Value>Data Source=tcp:courseprojectitrdbserver.database.windows.net,1433%3bInitial Catalog=CourseProjectItr_db%3bUser Id=JustNomad%40courseprojectitrdbserver%3bPassword=Rher062003vfrcbv</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

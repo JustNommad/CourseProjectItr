@@ -4,117 +4,144 @@
 @{
     ViewBag.Title = Localizer["ItemPage"];
 }
-<table>
-    <tbody>
-        @if (Model.ImageUrl != null)
-        {
-            <img src="@Url.Content(Model.ImageUrl)" alt="Image" style="width: 150px; height: 150px;" />
-        }
-        <tr><th>@Localizer["Name"]:</th><td>@Model.Name</td></tr>
-        <tr><th>@Localizer["Review"]:</th><td>@Model.Review</td></tr>
-        <tr><th>@Localizer["Tag"]:</th><td>@Model.Tags</td></tr>
-        <tr><th>Text 1:</th><td>@Model.OneText</td></tr>
-        <tr><th>Text 2:</th><td>@Model.SecondText</td></tr>
-        <tr><th>Text 3:</th><td>@Model.ThirdText</td></tr>
-        <tr><th>Time 1:</th><td>@Model.Time1</td></tr>
-        <tr><th>Time 2:</th><td>@Model.Time2</td></tr>
-        <tr><th>Time 3:</th><td>@Model.Time3</td></tr>
-        <tr><th>Number One:</th><td>@Model.NumberOne</td></tr>
-        <tr><th>Number Two:</th><td>@Model.NumberSecond</td></tr>
-        <tr><th>Number Three:</th><td>@Model.NumberThird</td></tr>
-        <tr><th>One:</th><td>@Model.One</td></tr>
-        <tr><th>Two:</th><td>@Model.Second</td></tr>
-        <tr><th>Three:</th><td>@Model.Third</td></tr>
-        <tr><th>CheckBox 1:</th><td>@Model.CheckBox1</td></tr>
-        <tr><th>CheckBox 2:</th><td>@Model.CheckBox2</td></tr>
-        <tr><th>CheckBox 3:</th><td>@Model.CheckBox3</td></tr>
-    </tbody>
-</table>
 
-<form>
-    <input hidden id="userName" value="@User.Identity.Name" />
-    <input hidden id="itemID" value="@Model.Id" />
+<link rel="stylesheet" href="~/css/itemPage.css" />
+<input hidden id="userName" value="@User.Identity.Name" />
+<input hidden id="itemID" value="@Model.Id" />
 
-    <h4 id="likeField" value="@ViewBag.Like"></h4>
-
-    <div id="likeInputForm">
-        <input class="btn btn-outline-success my-2 my-sm-0" type="button" id="sendLikeBtn" value="Like">
-    </div>
-
-    <label class="controle-label">@Localizer["Comment"]:</label><br />
+<div class="image-item">
+    @if (Model.ImageUrl != null)
+    {
+        <img src="@Url.Content(Model.ImageUrl)" alt="Image" style="width: 18%;max-height: 100%;" />
+    }
+<div class="mainfield">
+    <h1>@Model.Name</h1>
+    <h2 class="text-muted">@Model.Review</h2>
+    <h2 class="text-muted">@Model.Tags</h2>
     <table>
-        @foreach (var c in ViewBag.Comments)
-        {
-            <tr><tb>@c.UserName :@c.Comment</tb></tr>
-            <br />
-        }
+        <tbody>
+            @for (int i = 0; i < ViewBag.Collection.Count && i < ViewBag.Item.Count; i++)
+            {
+                <tr class="text-muted"><th>@ViewBag.Collection[i]</th><td>@ViewBag.Item[i]</td></tr>
+            }
+        </tbody>
     </table>
-    <div id="commentList"></div>
-
-    <div id="inputForm">
-        <label class="controle-label">@Localizer["InputComment"]:</label>
-        <input type="text" class="form-control" id="message" />
-        <input class="btn btn-outline-success my-2 my-sm-0" type="button" id="sendCommentBtn" value="Input">
+    <div class="likeButton" id="likeInputForm">
+        <input class="btn btn-outline-success my-2 my-sm-0" type="button" id="sendLikeBtn" value="@Localizer["Like"]">
     </div>
-
-    <script src="~/js/signalr.min.js"></script>
-    <script>
-        const hubConnection = new signalR.HubConnectionBuilder()
-            .withUrl("/chat")
-            .build();
-
-        hubConnection.on('SendComment', function (message, userName) {
-            let comment = document.createElement("table");
-            comment.appendChild(document.createTextNode(userName + ': ' + message));
-
-            document.querySelector("#commentList").appendChild(comment);
-
-        });
-
-        hubConnection.on('SendLike', function (likes) {
-            document.getElementById("likeField").value = likes;
-        })
-
-        document.getElementById("sendLikeBtn").addEventListener("click", async function (e) {
-            let itemID = document.getElementById("itemID").value;
-            const result = await fetch('/User/Like', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    ItemID: itemID,
-                    Choise: "true"
-                })
-            });
-            if (result.ok === true) {
-                const res = await result.json();
-                hubConnection.invoke("SendLike", res.like);
+    <div class="likeField">
+        <label class="controle-label likeLable text-muted">@Localizer["Like"]: @ViewBag.Likes</label>
+    </div>
+</div>
+</div>
+<hr />
+<div class="container">
+    <form>
+        <table>
+            @foreach (var c in ViewBag.Comments)
+            {
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content text-white bg-dark">
+                        <div class="modal-header">
+                            <h5 class="modal-title">
+                                @c.UserName
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <span>
+                                    @c.Comment
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             }
-        });
+        </table>
+        <div id="commentList"></div>
 
-        document.getElementById("sendCommentBtn").addEventListener("click", async function (e) {
-            let message = document.getElementById("message").value;
-            let itemID = document.getElementById("itemID").value;
-            let userName = document.getElementById("userName").value;
-            const result = await fetch('/User/Comment', {
-                method: 'POST',
-                headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    UserName: userName,
-                    ItemID: itemID,
-                    Comment: message
-                })
+        <div id="inputForm">
+            <label class="controle-label">@Localizer["InputComment"]:</label>
+            <input type="text" class="form-control" id="message" />
+            <input class="btn btn-outline-success my-2 my-sm-0" placeholder="@Localizer["InputComment"]" aria-lable="@Localizer["InputComment"]"
+                   type="button" id="sendCommentBtn" value="Input">
+        </div>
+
+        <script src="~/js/signalr.min.js"></script>
+        <script>
+            const hubConnection = new signalR.HubConnectionBuilder()
+                .withUrl("/chat")
+                .build();
+
+            hubConnection.on('SendComment', function (message, userName, itemID) {
+                if (itemID == document.querySelector('#itemID').value) {
+
+                const comment = document.createElement('div');
+                comment.innerHTML = `<div class="modal-dialog" role="document">
+                    <div class="modal-content text-white bg-dark">
+                        <div class="modal-header">
+                            <h5 class="modal-title">
+                            ${userName}
+                            </h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="container-fluid">
+                                <span>
+                                ${message}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>`;
+                document.querySelector("#commentList").appendChild(comment);
+                };
             });
-            if (result.ok === true) {
-                const res = await result.json();
-                hubConnection.invoke("SendComment", res.comment, res.userName);
-            }
-        });
-        hubConnection.start();
-    </script>
-</form>
+
+            hubConnection.on('SendLike', function (likes) {
+                document.getElementById("likeField").value = likes;
+            })
+
+            document.getElementById("sendLikeBtn").addEventListener("click", async function (e) {
+                let itemID = document.getElementById("itemID").value;
+                const result = await fetch('/User/Like', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        ItemID: itemID,
+                        Choise: "true"
+                    })
+                });
+                if (result.ok === true) {
+                    const res = await result.json();
+                    hubConnection.invoke("SendLike", res.like);
+                }
+            });
+
+            document.getElementById("sendCommentBtn").addEventListener("click", async function (e) {
+                let message = document.getElementById("message").value;
+                let itemID = document.getElementById("itemID").value;
+                let userName = document.getElementById("userName").value;
+                const result = await fetch('/User/Comment', {
+                    method: 'POST',
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        UserName: userName,
+                        ItemID: itemID,
+                        Comment: message
+                    })
+                });
+                if (result.ok === true) {
+                    const res = await result.json();
+                    hubConnection.invoke("SendComment", res.comment, res.userName, res.itemId);
+                }
+            });
+            hubConnection.start();
+        </script>
+    </form>
+</div>

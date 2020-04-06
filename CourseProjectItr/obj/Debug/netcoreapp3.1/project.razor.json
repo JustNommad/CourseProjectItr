@@ -20556,6 +20556,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\JustNomad\\source\\repos\\CourseProjectItr\\CourseProjectItr\\Views\\Shared\\_SelectLanguagePartial.cshtml",
+      "TargetPath": "Views\\Shared\\_SelectLanguagePartial.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\JustNomad\\source\\repos\\CourseProjectItr\\CourseProjectItr\\Views\\User\\Edit.cshtml",
       "TargetPath": "Views\\User\\Edit.cshtml",
       "FileKind": "mvc"
