@@ -21,22 +21,22 @@ namespace CourseProjectItr.Controllers
         {
             if(!string.IsNullOrEmpty(searchText))
             {
-                var collections = db.Collections.FullTextSearchQuery(searchText);
                 List<Items> items = new List<Items>();
-                foreach (var c in collections)
+                var itemList = db.Items.FullTextSearchQuery(searchText);
+                foreach (var i in itemList)
                 {
-                    var itemsID = db.ItemsOfCollections.Where(i => i.CollectionId == c.Id).Select(it => it.Id).ToList();
-                    foreach (var i in itemsID)
-                    {
-                        items.Add(await db.Items.FirstOrDefaultAsync(c => c.Id == i));
-                    }
+                    items.Add(i);
                 }
                 if(items.Count == 0)
                 {
-                    var itemList = db.Items.FullTextSearchQuery(searchText);
-                    foreach (var i in itemList)
+                    var collections = db.Collections.FullTextSearchQuery(searchText);
+                    foreach (var c in collections)
                     {
-                        items.Add(i);
+                        var itemsID = db.ItemsOfCollections.Where(i => i.CollectionId == c.Id).Select(it => it.Id).ToList();
+                        foreach (var i in itemsID)
+                        {
+                            items.Add(await db.Items.FirstOrDefaultAsync(c => c.Id == i));
+                        }
                     }
                     return View(items);
                 }

@@ -101,8 +101,6 @@ C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\ne
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\CourseProjectItr.Resources.ViewModels.RegisterViewModel.ru.resources
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\CourseProjectItr.Resources.Views.Account.Login.en.resources
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\CourseProjectItr.Resources.Views.Account.Login.ru.resources
-C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\CourseProjectItr.Resources.Views.Account.Register.en.resources
-C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\CourseProjectItr.Resources.Views.Account.Register.ru.resources
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\CourseProjectItr.Resources.Views.Collection.Collection.en.resources
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\CourseProjectItr.Resources.Views.Collection.Collection.ru.resources
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\CourseProjectItr.Resources.Views.Collection.Edit.en.resources
@@ -141,7 +139,6 @@ C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\ne
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\CourseProjectItr.TagHelpers.output.cache
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\CourseProjectItr.RazorCoreGenerate.cache
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\Razor\Views\Account\Login.cshtml.g.cs
-C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\Razor\Views\Account\Register.cshtml.g.cs
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\Razor\Views\Collection\Collection.cshtml.g.cs
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\Razor\Views\Collection\Edit.cshtml.g.cs
 C:\Users\JustNomad\source\repos\CourseProjectItr\CourseProjectItr\obj\Release\netcoreapp3.1\Razor\Views\Collection\Index.cshtml.g.cs

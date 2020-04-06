@@ -97,7 +97,6 @@ namespace CourseProjectItr.Controllers
             return View(model);
         }
         [HttpGet]
-        [ValidateAntiForgeryToken]
         [Authorize(Roles = "author, admin, user")]
         public async Task<IActionResult> Delete(string itemId)
         {
@@ -113,7 +112,7 @@ namespace CourseProjectItr.Controllers
                 db.ItemsOfCollections.Remove(ic);
                 await db.SaveChangesAsync();
             }
-            return RedirectToAction("ItemList", "Collection");
+            return RedirectToAction("ItemList", "Collection", new {item.CollectionId, item.UserId });
         }
         public async Task<IActionResult> Edit(string id, string userName)
         {

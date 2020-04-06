@@ -117,3 +117,34 @@ function sendDataD() {
         values = [];
     }
 }
+async function sendRegisterData() {
+    let email = document.getElementById("inputEmail").value;
+    let password = document.getElementById("inputPassword").value;
+    let confirmPassword = document.getElementById("confirmPassword").value;
+    let nickname = document.getElementById("inputNickName").value;
+    let firstname = document.getElementById("inputFirstName").value;
+    let lastname = document.getElementById("inputLastName").value;
+    let age = document.getElementById("inputAge").value;
+
+    const result = await fetch('/Account/Register', {
+        method: 'POST',
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            Email: email,
+            NickName: nickname,
+            FirstName: firstname,
+            LastName: lastname,
+            Age: age,
+            Password: password,
+            ConfirmPassword: confirmPassword
+        })
+    })
+    window.location.href = '/Collection/Index';
+}
+function hiddenBox() {
+    var img = document.getElementById("box");
+    img.classList.toggle("hidden");
+}

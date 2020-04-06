@@ -12,7 +12,7 @@
 <div class="image-item">
     @if (Model.ImageUrl != null)
     {
-        <img src="@Url.Content(Model.ImageUrl)" alt="Image" style="width: 18%;max-height: 100%;" />
+    <img src="@Url.Content(Model.ImageUrl)" alt="Image" style="width: 18%;max-height: 100%;" />
     }
 <div class="mainfield">
     <h1>@Model.Name</h1>
@@ -22,15 +22,15 @@
         <tbody>
             @for (int i = 0; i < ViewBag.Collection.Count && i < ViewBag.Item.Count; i++)
             {
-                <tr class="text-muted"><th>@ViewBag.Collection[i]</th><td>@ViewBag.Item[i]</td></tr>
+            <tr class="text-muted"><th>@ViewBag.Collection[i]</th><td>@ViewBag.Item[i]</td></tr>
             }
         </tbody>
     </table>
-    <div class="likeButton" id="likeInputForm">
-        <input class="btn btn-outline-success my-2 my-sm-0" type="button" id="sendLikeBtn" value="@Localizer["Like"]">
-    </div>
     <div class="likeField">
         <label class="controle-label likeLable text-muted">@Localizer["Like"]: @ViewBag.Likes</label>
+        <div class="likeButton" id="likeInputForm">
+            <input class="btn btn-outline-success my-2 my-sm-0" type="button" id="sendLikeBtn" value="@Localizer["Like"]">
+        </div>
     </div>
 </div>
 </div>

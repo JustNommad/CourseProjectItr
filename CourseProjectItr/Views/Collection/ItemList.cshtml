@@ -12,17 +12,17 @@
     {
         <img src="@Url.Content(ViewBag.Collection.ImageUrl)" alt="Image" style="width: 18%;max-height: 300px;" />
     }
-    <div class="mainfield">
-        <h1>@ViewBag.Collection.Name</h1>
-        <h2 class="text-muted">@ViewBag.Collection.Theme</h2>
-        <h2 class="text-muted">@ViewBag.Collection.Review</h2>
-    </div>
+<div class="mainfield">
+    <h1>@ViewBag.Collection.Name</h1>
+    <h2 class="text-muted">@ViewBag.Collection.Theme</h2>
+    <h2 class="text-muted">@ViewBag.Collection.Review</h2>
     @if (User.Identity.Name == ViewBag.Creator)
     {
         <div class="create-button">
             <a class="btn btn-sm btn-success" asp-controller="Item" asp-action="Create" asp-route-collectionId="@ViewBag.Collection.Id" asp-route-userID="@ViewBag.UserID">@Localizer["AddItem"]</a>
         </div>
     }
+</div>
 </div>
 <hr />
 <div class="items-list">
@@ -49,8 +49,8 @@
                                         <a asp-controller="Item" asp-action="Index" asp-route-itemID="@item.Id" class="btn btn-sm btn-outline-secondary">@Localizer["Open"]</a>
                                         @if (User.Identity.Name == ViewBag.Creator)
                                         { 
-                                            <a asp-controller="Item" asp-action="Edit" asp-route-Id="@item.Id" asp-route-userName="@User.Identity.Name" class="btn btn-sm btn-outline-secondary">@Localizer["Edit"]</a>
-                                            <a asp-controller="Items" asp-action="Delete" asp-route-itemId="@item.Id" class="btn btn-sm btn-outline-secondary">@Localizer["Delete"]</a>
+                                            <a asp-controller="Item" asp-action="Edit" asp-route-Id="@item.Id" asp-route-userName="@User.Identity.Name" type="button" class="btn btn-sm btn-outline-secondary">@Localizer["Edit"]</a>
+                                            <a asp-controller="Item" asp-action="Delete" asp-route-itemId="@item.Id" class="btn btn-sm btn-outline-secondary" type="button">@Localizer["Delete"]</a>
                                          }
                                     </div>
                                 </div>
