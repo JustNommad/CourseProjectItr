@@ -52,13 +52,13 @@ namespace CourseProjectItr
                         IConfigurationSection googleAuthNSection =
                             Configuration.GetSection("Authentication:Google");
 
-                        options.ClientId = "605381655727-pj71vggm8sj5jvddihc0fipsf694q8e8.apps.googleusercontent.com";
-                        options.ClientSecret = "eEITCw00jdDwid9Isc0CacdA";
+                        options.ClientId = googleAuthNSection["ClientId"];
+                        options.ClientSecret = googleAuthNSection["ClientSecret"];
                     })
                     .AddMicrosoftAccount(microsoftOptions =>
                     {
-                        microsoftOptions.ClientId = "ba50baef-866c-4754-861f-c3ba73e9559d";
-                        microsoftOptions.ClientSecret = "z@]84M6d:Vty?NH689DqyFnN:[LGFO5x";
+                        microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ClientId"];
+                        microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
                     }); ;
 
             services.Configure<SecurityStampValidatorOptions>(options =>

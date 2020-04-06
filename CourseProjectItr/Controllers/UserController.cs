@@ -35,9 +35,12 @@ namespace CourseProjectItr.Controllers
             if (userName != null)
             {
                 User user = await _userManager.FindByNameAsync(userName);
-                var roleIdentity = await _userManager.GetRolesAsync(user);
-                ViewBag.Role = roleIdentity[0];
-                ViewBag.Collection = db.Collections.Where(c => c.UserId == user.Id).ToList();
+                if(user != null)
+                {
+                    var roleIdentity = await _userManager.GetRolesAsync(user);
+                    ViewBag.Role = roleIdentity[0];
+                    ViewBag.Collection = db.Collections.Where(c => c.UserId == user.Id).ToList();
+                }
                 return View(user);
             }
             else

@@ -176,7 +176,6 @@ namespace CourseProjectItr.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [Authorize(Roles = "author, admin, user")]
         public async Task<IActionResult> Edit(EditCollectionViewModel model)
         {
@@ -255,13 +254,6 @@ namespace CourseProjectItr.Controllers
                 await db.SaveChangesAsync();
             }
             return RedirectToAction("Index", "User", new { userName });
-        }
-
-        [HttpPost]
-        public void Upload(IFormFile file)
-        {
-            ViewBag.Img = file;
-        }
-       
+        }      
     }
 }

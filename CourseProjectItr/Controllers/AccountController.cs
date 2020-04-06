@@ -29,14 +29,7 @@ namespace CourseProjectItr.Controllers
         {
             return View();
         }
-        [AcceptVerbs("Get", "Post")]
-        public async Task<IActionResult> CheckEmail(string email)
-        {
-            User user = await _userManager.FindByEmailAsync(email);
-            if (user != null)
-                return Json(false);
-            return Json(true);
-        }
+
         [HttpPost]
         public async Task<IActionResult> Register([FromBody]RegisterViewModel model)
         {
